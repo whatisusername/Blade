@@ -12,9 +12,9 @@ class BLADE_API ABladeCharacterBase : public ACharacter
 public:
 	ABladeCharacterBase() = default;
 
-protected:
-	virtual void BeginPlay() override;
-
-public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+protected:
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
 };
