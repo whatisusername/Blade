@@ -17,7 +17,10 @@ public class Blade : ModuleRules
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
-			"UMG"
+			"UMG",
+			"GameplayAbilities",
+			"GameplayTags",
+			"GameplayTasks"
 		});
 
 		PublicIncludePaths.AddRange(new string[] {
