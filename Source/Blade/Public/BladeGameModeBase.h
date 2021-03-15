@@ -7,11 +7,11 @@
 #include "BladeGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BLADE_API ABladeGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
 };
