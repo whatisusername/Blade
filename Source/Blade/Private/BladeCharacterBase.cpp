@@ -128,7 +128,7 @@ void ABladeCharacterBase::GrantAbilities()
 	for (const TSubclassOf<UBladeGameplayAbility>& GameAbility : DefaultAbilities)
 	{
 		AbilitySystemComponent->GiveAbility(
-			FGameplayAbilitySpec(GameAbility, 1, static_cast<int32>(GameAbility.GetDefaultObject()->AbilityInputId), this)
+			FGameplayAbilitySpec(GameAbility, 1, static_cast<int32>(GameAbility.GetDefaultObject()->GetAbilityInputId()), this)
 		);
 	}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BladeAbilityTypes.h"
 #include "Abilities/GameplayAbility.h"
 #include "BladeGameplayAbility.generated.h"
 
@@ -21,6 +22,12 @@ class BLADE_API UBladeGameplayAbility : public UGameplayAbility
 public:
 	UBladeGameplayAbility() = default;
 
+	EBladeAbilityInputId GetAbilityInputId() const;
+
+protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Ability")
 	EBladeAbilityInputId AbilityInputId = EBladeAbilityInputId::None;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "GameplayEffect")
+	TMap<FGameplayTag, FBladeGameplayEffectContainer> EffectContainerMap;
 };
