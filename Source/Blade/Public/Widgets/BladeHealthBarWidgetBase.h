@@ -4,14 +4,17 @@
 #include "Blueprint/UserWidget.h"
 #include "BladeHealthBarWidgetBase.generated.h"
 
+class UProgressBar;
+
 UCLASS()
 class BLADE_API UBladeHealthBarWidgetBase : public UUserWidget
 {
 	GENERATED_BODY()
 
 public:
-	explicit UBladeHealthBarWidgetBase(const FObjectInitializer& MovieSceneBlends);
+	UPROPERTY(meta = (BindWidget))
+	UProgressBar* HealthBar;
 
-	UFUNCTION(BlueprintImplementableEvent)
-	void SetProgress(float Percentage);
+	UFUNCTION()
+	void UpdateHealthPercentage(float Percentage);
 };

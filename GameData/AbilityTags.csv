@@ -1,0 +1,4 @@
+RowName,Tag,DevComment
+Melee,Ability.Melee,
+WeaponHit,Event.Montage.Shared.WeaponHit,
+Status,Status.DamageImmune,

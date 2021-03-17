@@ -1,6 +1,10 @@
 #include "BladeHealthBarWidgetBase.h"
+#include "Components/ProgressBar.h"
 
-UBladeHealthBarWidgetBase::UBladeHealthBarWidgetBase(const FObjectInitializer& MovieSceneBlends)
-	: Super(MovieSceneBlends)
+void UBladeHealthBarWidgetBase::UpdateHealthPercentage(float Percentage)
 {
+	if (HealthBar)
+	{
+		HealthBar->SetPercent(Percentage);
+	}
 }
