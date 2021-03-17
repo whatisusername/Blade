@@ -5,7 +5,9 @@
 
 ABladeGameModeBase::ABladeGameModeBase()
 {
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawn(TEXT("/Game/Blueprints/BP_PlayerCharacter"));
+	DefaultPawnClass = PlayerPawn.Class;
+	
 	GameStateClass = ABladeGameStateBase::StaticClass();
-	DefaultPawnClass = ABladeCharacterBase::StaticClass();
 	PlayerControllerClass = ABladePlayerControllerBase::StaticClass();
 }
