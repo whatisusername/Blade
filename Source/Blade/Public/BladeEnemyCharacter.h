@@ -13,9 +13,8 @@ class BLADE_API ABladeEnemyCharacter : public ABladeCharacterBase
 	GENERATED_BODY()
 
 public:
-	ABladeEnemyCharacter();
-
-	virtual void BeginPlay() override;
+	explicit ABladeEnemyCharacter(const FObjectInitializer& ObjectInitializer);
+	virtual void PostInitializeComponents() override;
 
 protected:
 	UPROPERTY()
@@ -23,4 +22,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget")
 	TSubclassOf<UBladeHealthBarWidgetBase> WidgetClass;
+
+	UFUNCTION()
+	virtual void UpdateHealthProgress();
 };

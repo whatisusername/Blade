@@ -17,7 +17,7 @@ class BLADE_API ABladeCharacterBase : public ACharacter, public IAbilitySystemIn
 	GENERATED_BODY()
 
 public:
-	ABladeCharacterBase();
+	explicit ABladeCharacterBase(const FObjectInitializer& ObjectInitializer);
 
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;

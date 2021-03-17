@@ -2,14 +2,16 @@
 #include "BladeAbilitySystemComponent.h"
 #include "BladeAttributeSet.h"
 #include "BladeGameplayAbility.h"
+#include "Components/CapsuleComponent.h"
 #include "GameplayEffect.h"
 
-ABladeCharacterBase::ABladeCharacterBase()
+ABladeCharacterBase::ABladeCharacterBase(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
-	AbilitySystemComponent = CreateDefaultSubobject<UBladeAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AbilitySystemComponent = ObjectInitializer.CreateDefaultSubobject<UBladeAbilitySystemComponent>(this, TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
 
-	AttributeSet = CreateDefaultSubobject<UBladeAttributeSet>(TEXT("AttributeSet"));
+	AttributeSet = ObjectInitializer.CreateDefaultSubobject<UBladeAttributeSet>(this, TEXT("AttributeSet"));
 }
 
 void ABladeCharacterBase::PossessedBy(AController* NewController)
