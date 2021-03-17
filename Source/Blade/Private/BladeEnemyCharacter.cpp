@@ -6,6 +6,7 @@ ABladeEnemyCharacter::ABladeEnemyCharacter(const FObjectInitializer& ObjectIniti
 	: Super(ObjectInitializer)
 {
 	WidgetComponent = ObjectInitializer.CreateDefaultSubobject<UWidgetComponent>(this, TEXT("HPWidget"));
+	WidgetComponent->SetupAttachment(RootComponent);
 	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
 	WidgetComponent->SetDrawSize(FVector2D(100, 16));
 }
