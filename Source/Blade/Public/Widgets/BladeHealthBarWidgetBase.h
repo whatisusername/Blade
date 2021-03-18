@@ -12,9 +12,11 @@ class BLADE_API UBladeHealthBarWidgetBase : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(meta = (BindWidget))
-	UProgressBar* HealthBar;
-
-	UFUNCTION()
 	void UpdateHealthPercentage(float Percentage);
+
+protected:
+	UPROPERTY(meta = (BindWidget))
+	UProgressBar* HealthBar = nullptr;
+
+	virtual void NativeConstruct() override;
 };

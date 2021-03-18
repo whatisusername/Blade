@@ -19,18 +19,19 @@ void ABladeEnemyCharacter::PostInitializeComponents()
 	WidgetComponent->SetRelativeLocation(FVector(0, 0, 180));
 }
 
+void ABladeEnemyCharacter::HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags)
+{
+	Super::HandleHealthChanged(DeltaValue, EventTags);
+	UpdateHealthProgress();
+}
+
 void ABladeEnemyCharacter::UpdateHealthProgress()
 {
-	UBladeHealthBarWidgetBase* WidgetBase = WidgetClass.GetDefaultObject();
-	float HealthPercentage = GetHealth() / GetMaxHealth();
-	WidgetBase->UpdateHealthPercentage(HealthPercentage);
+	UBladeHealthBarWidgetBase* Widget = Cast<UBladeHealthBarWidgetBase>(WidgetComponent->GetUserWidgetObject());
 
-	if (HealthPercentage > 0.0f)
+	if (Widget)
 	{
-		WidgetBase->SetVisibility(ESlateVisibility::Visible);
-	}
-	else
-	{
-		WidgetBase->SetVisibility(ESlateVisibility::Hidden);
+		float HealthPercentage = GetHealth() / GetMaxHealth();
+		Widget->UpdateHealthPercentage(HealthPercentage);
 	}
 }
