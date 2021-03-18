@@ -27,6 +27,9 @@ public:
 	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ABladeCharacterBase* InstigatorCharacter, AActor* DamageCauser);
 	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 
+	UFUNCTION(BlueprintCallable)
+	virtual bool Attack(const FGameplayTag& GameplayTag);
+
 	int32 GetCharacterLevel() const;
 
 	UFUNCTION(BlueprintCallable)
@@ -61,6 +64,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
 	TArray<TSubclassOf<UBladeGameplayAbility>> DefaultAbilities;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
+	FName AttackSocketName;
 
 	bool bAbilitiesInitialized = false;
 };

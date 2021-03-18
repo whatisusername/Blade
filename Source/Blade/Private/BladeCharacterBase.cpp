@@ -1,9 +1,10 @@
 #include "BladeCharacterBase.h"
+#include "AbilitySystemBlueprintLibrary.h"
 #include "BladeAbilitySystemComponent.h"
 #include "BladeAttributeSet.h"
 #include "BladeGameplayAbility.h"
-#include "Components/CapsuleComponent.h"
 #include "GameplayEffect.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 ABladeCharacterBase::ABladeCharacterBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -64,6 +65,27 @@ void ABladeCharacterBase::HandleDamage(float DamageAmount, const FHitResult& Hit
 void ABladeCharacterBase::HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags)
 {
 	OnHealthChanged(DeltaValue, EventTags);
+}
+
+bool ABladeCharacterBase::Attack(const FGameplayTag& GameplayTag)
+{
+	FVector Location = GetMesh()->GetSocketLocation(AttackSocketName);
+	TArray<TEnumAsByte<EObjectTypeQuery>> Types{ UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn) };
+	TArray<AActor*> IgnoreActors{ this };
+	TArray<AActor*> OverlapActors;
+	const float Radius = 30.0f;
+
+	bool bHasOverlap = UKismetSystemLibrary::SphereOverlapActors(GetWorld(), Location, Radius, Types, StaticClass(), IgnoreActors, OverlapActors);
+	if (bHasOverlap)
+	{
+		FGameplayEventData Payload;
+		Payload.Instigator = GetInstigator();
+		Payload.Target = OverlapActors[0];
+		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetInstigator(), GameplayTag, Payload);
+
+		return true;
+	}
+	return false;
 }
 
 int32 ABladeCharacterBase::GetCharacterLevel() const
