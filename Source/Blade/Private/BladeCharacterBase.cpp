@@ -4,6 +4,7 @@
 #include "BladeAttributeSet.h"
 #include "BladeGameplayAbility.h"
 #include "GameplayEffect.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 ABladeCharacterBase::ABladeCharacterBase(const FObjectInitializer& ObjectInitializer)
@@ -93,6 +94,23 @@ int32 ABladeCharacterBase::GetCharacterLevel() const
 	return 1;
 }
 
+bool ABladeCharacterBase::IsAlive() const
+{
+	return GetHealth() > 0;
+}
+
+bool ABladeCharacterBase::CanUseAbility() const
+{
+	return IsAlive() && !UGameplayStatics::IsGamePaused(GetWorld());
+}
+
+bool ABladeCharacterBase::IsUsingMelee() const
+{
+	TArray<UBladeGameplayAbility*> ActiveAbilities;
+	GetActiveAbilitiesWithTags(MeleeTags, ActiveAbilities);
+	return ActiveAbilities.Num() > 0;
+}
+
 float ABladeCharacterBase::GetHealth() const
 {
 	if (IsValid(AttributeSet))
@@ -170,4 +188,19 @@ void ABladeCharacterBase::BindAbilityInput()
 										   static_cast<int32>(EBladeAbilityInputId::Cancel));
 
 	AbilitySystemComponent->BindAbilityActivationToInputComponent(InputComponent, Binds);
+}
+
+bool ABladeCharacterBase::ActivateAbilitiesWithTags(FGameplayTagContainer AbilityTags, bool bAllowRemoteActivation)
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->TryActivateAbilitiesByTag(AbilityTags, bAllowRemoteActivation);
+	}
+	return false;
+}
+
+void ABladeCharacterBase::GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<UBladeGameplayAbility*>& ActiveAbilities) const
+{
+	check(AbilitySystemComponent);
+	AbilitySystemComponent->GetActiveAbilitiesWithTags(AbilityTags, ActiveAbilities);
 }
