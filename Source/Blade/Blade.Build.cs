@@ -26,6 +26,7 @@ public class Blade : ModuleRules
 		PublicIncludePaths.AddRange(new string[] {
 			Path.Combine("Blade", "Public/Abilities"),
 			Path.Combine("Blade", "Public/Animations"),
+			Path.Combine("Blade", "Public/AI"),
 			Path.Combine("Blade", "Public/Widgets")
 		});
 	}

@@ -30,7 +30,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual bool Attack(const FGameplayTag& GameplayTag);
 
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	bool ActivateAbilitiesWithTags(FGameplayTagContainer AbilityTags, bool bAllowRemoteActivation = true);
+
 	int32 GetCharacterLevel() const;
+	bool IsAlive() const;
+	bool CanUseAbility() const;
+	bool IsUsingMelee() const;
 
 	UFUNCTION(BlueprintCallable)
 	virtual float GetHealth() const;
@@ -46,6 +52,9 @@ protected:
 	/** Grant abilities, but only on the server	*/
 	virtual void GrantAbilities();
 	virtual void BindAbilityInput();
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<UBladeGameplayAbility*>& ActiveAbilities) const;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ABladeCharacterBase* InstigatorCharacter, AActor* DamageCauser);
@@ -64,6 +73,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
 	TArray<TSubclassOf<UBladeGameplayAbility>> DefaultAbilities;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
+	FGameplayTagContainer MeleeTags;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Attack")
 	FName AttackSocketName;

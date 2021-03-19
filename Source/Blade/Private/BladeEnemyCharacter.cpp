@@ -1,10 +1,13 @@
 #include "BladeEnemyCharacter.h"
+#include "BladeAIController.h"
 #include "BladeHealthBarWidgetBase.h"
 #include "Components/WidgetComponent.h"
 
 ABladeEnemyCharacter::ABladeEnemyCharacter(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	AIControllerClass = ABladeAIController::StaticClass();
+
 	WidgetComponent = ObjectInitializer.CreateDefaultSubobject<UWidgetComponent>(this, TEXT("HPWidget"));
 	WidgetComponent->SetupAttachment(RootComponent);
 	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
