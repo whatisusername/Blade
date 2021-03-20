@@ -2,21 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "BladeHealthBarWidgetBase.generated.h"
+#include "BladeWidgetBase.generated.h"
 
 class UProgressBar;
 
 UCLASS()
-class BLADE_API UBladeHealthBarWidgetBase : public UUserWidget
+class BLADE_API UBladeWidgetBase : public UUserWidget
 {
 	GENERATED_BODY()
 
 public:
-	void UpdateHealthPercentage(float Percentage);
+	virtual void UpdateHealth(float CurrentHealth, float MaxHealth);
 
 protected:
 	UPROPERTY(meta = (BindWidget))
 	UProgressBar* HealthBar = nullptr;
-
-	virtual void NativeConstruct() override;
 };
