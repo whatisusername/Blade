@@ -15,6 +15,7 @@ class BLADE_API ABladeEnemyCharacter : public ABladeCharacterBase
 public:
 	explicit ABladeEnemyCharacter(const FObjectInitializer& ObjectInitializer);
 	virtual void PostInitializeComponents() override;
+	virtual void Die() override;
 
 protected:
 	UPROPERTY()

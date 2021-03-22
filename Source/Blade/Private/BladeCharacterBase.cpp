@@ -5,6 +5,7 @@
 #include "BladeGameplayAbility.h"
 #include "BladePlayerControllerBase.h"
 #include "GameplayEffect.h"
+#include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -214,4 +215,9 @@ void ABladeCharacterBase::GetActiveAbilitiesWithTags(FGameplayTagContainer Abili
 {
 	check(AbilitySystemComponent);
 	AbilitySystemComponent->GetActiveAbilitiesWithTags(AbilityTags, ActiveAbilities);
+}
+
+void ABladeCharacterBase::Die()
+{
+	GetCapsuleComponent()->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
 }
