@@ -3,6 +3,7 @@
 #include "BladeAbilitySystemComponent.h"
 #include "BladeAttributeSet.h"
 #include "BladeGameplayAbility.h"
+#include "BladePlayerControllerBase.h"
 #include "GameplayEffect.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -65,6 +66,7 @@ void ABladeCharacterBase::HandleDamage(float DamageAmount, const FHitResult& Hit
 
 void ABladeCharacterBase::HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags)
 {
+	UpdateHealthProgress();
 	OnHealthChanged(DeltaValue, EventTags);
 }
 
@@ -188,6 +190,15 @@ void ABladeCharacterBase::BindAbilityInput()
 										   static_cast<int32>(EBladeAbilityInputId::Cancel));
 
 	AbilitySystemComponent->BindAbilityActivationToInputComponent(InputComponent, Binds);
+}
+
+void ABladeCharacterBase::UpdateHealthProgress()
+{
+	ABladePlayerControllerBase* PlayerController = GetController<ABladePlayerControllerBase>();
+	if (PlayerController)
+	{
+		PlayerController->UpdateHealth(GetHealth(), GetMaxHealth());
+	}
 }
 
 bool ABladeCharacterBase::ActivateAbilitiesWithTags(FGameplayTagContainer AbilityTags, bool bAllowRemoteActivation)
