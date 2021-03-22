@@ -1,8 +1,8 @@
-#include "BladeAnimNotifyState_BlockInput.h"
+#include "AnimNotifyState_BlockInput.h"
 #include "BladeCharacterBase.h"
 #include "BladePlayerControllerBase.h"
 
-void UBladeAnimNotifyState_BlockInput::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
+void UAnimNotifyState_BlockInput::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
 	ABladeCharacterBase* Character = Cast<ABladeCharacterBase>(MeshComp->GetOwner());
 	if (Character)
@@ -15,7 +15,7 @@ void UBladeAnimNotifyState_BlockInput::NotifyBegin(USkeletalMeshComponent* MeshC
 	}
 }
 
-void UBladeAnimNotifyState_BlockInput::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+void UAnimNotifyState_BlockInput::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	ABladeCharacterBase* Character = Cast<ABladeCharacterBase>(MeshComp->GetOwner());
 	if (Character)

@@ -1,7 +1,6 @@
 #include "BladeAIController.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "BladeEnemyCharacter.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISense_Sight.h"
 
@@ -9,6 +8,16 @@ ABladeAIController::ABladeAIController()
 {
 	AIPerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AIPerception"));
 	SetPerceptionComponent(*AIPerceptionComponent);
+}
+
+void ABladeAIController::PauseLogic(const FString& Reason)
+{
+	GetBrainComponent()->PauseLogic(Reason);
+}
+
+void ABladeAIController::ResumeLogic(const FString& Reason)
+{
+	GetBrainComponent()->ResumeLogic(Reason);
 }
 
 void ABladeAIController::OnPossess(APawn* InPawn)

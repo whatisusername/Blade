@@ -16,6 +16,9 @@ class BLADE_API ABladeAIController : public AAIController
 public:
 	ABladeAIController();
 
+	virtual void PauseLogic(const FString& Reason);
+	virtual void ResumeLogic(const FString& Reason);
+
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AI")
 	UAIPerceptionComponent* AIPerceptionComponent;

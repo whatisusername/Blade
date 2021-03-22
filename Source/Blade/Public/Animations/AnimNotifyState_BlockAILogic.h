@@ -2,10 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimNotifies/AnimNotifyState.h"
-#include "BladeAnimNotifyState_BlockInput.generated.h"
+#include "AnimNotifyState_BlockAILogic.generated.h"
 
 UCLASS()
-class BLADE_API UBladeAnimNotifyState_BlockInput : public UAnimNotifyState
+class BLADE_API UAnimNotifyState_BlockAILogic : public UAnimNotifyState
 {
 	GENERATED_BODY()
 

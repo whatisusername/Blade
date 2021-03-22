@@ -1,7 +1,7 @@
-#include "BladeAnimNotify_WeaponHit.h"
+#include "AnimNotify_WeaponHit.h"
 #include "BladeCharacterBase.h"
 
-void UBladeAnimNotify_WeaponHit::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+void UAnimNotify_WeaponHit::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	Super::Notify(MeshComp, Animation);
 

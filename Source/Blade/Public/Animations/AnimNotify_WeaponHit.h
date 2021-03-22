@@ -3,10 +3,10 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Animation/AnimNotifies/AnimNotify.h"
-#include "BladeAnimNotify_WeaponHit.generated.h"
+#include "AnimNotify_WeaponHit.generated.h"
 
 UCLASS()
-class BLADE_API UBladeAnimNotify_WeaponHit : public UAnimNotify
+class BLADE_API UAnimNotify_WeaponHit : public UAnimNotify
 {
 	GENERATED_BODY()
 
