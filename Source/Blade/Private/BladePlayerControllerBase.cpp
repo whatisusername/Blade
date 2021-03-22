@@ -3,6 +3,11 @@
 #include "BladeWidgetBase.h"
 #include "Blueprint/UserWidget.h"
 
+void ABladePlayerControllerBase::UpdateHealth(float CurrentHealth, float MaxHealth)
+{
+	OwningWidget->UpdateHealth(CurrentHealth, MaxHealth);
+}
+
 void ABladePlayerControllerBase::OnPossess(APawn* aPawn)
 {
 	Super::OnPossess(aPawn);
@@ -11,8 +16,8 @@ void ABladePlayerControllerBase::OnPossess(APawn* aPawn)
 	if (PlayerCharacter)
 	{
 		OwningWidget = CreateWidget<UBladeWidgetBase>(this, WidgetClass);
-		OwningWidget->UpdateHealth(PlayerCharacter->GetHealth(), PlayerCharacter->GetMaxHealth());
 		OwningWidget->AddToViewport();
+		UpdateHealth(PlayerCharacter->GetHealth(), PlayerCharacter->GetMaxHealth());
 	}
 }
 

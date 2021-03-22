@@ -52,6 +52,7 @@ protected:
 	/** Grant abilities, but only on the server	*/
 	virtual void GrantAbilities();
 	virtual void BindAbilityInput();
+	virtual void UpdateHealthProgress();
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<UBladeGameplayAbility*>& ActiveAbilities) const;

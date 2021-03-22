@@ -22,12 +22,6 @@ void ABladeEnemyCharacter::PostInitializeComponents()
 	WidgetComponent->SetRelativeLocation(FVector(0, 0, 180));
 }
 
-void ABladeEnemyCharacter::HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags)
-{
-	Super::HandleHealthChanged(DeltaValue, EventTags);
-	UpdateHealthProgress();
-}
-
 void ABladeEnemyCharacter::UpdateHealthProgress()
 {
 	UBladeHealthBarWidget* Widget = Cast<UBladeHealthBarWidget>(WidgetComponent->GetUserWidgetObject());

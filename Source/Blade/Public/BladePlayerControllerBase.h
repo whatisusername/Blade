@@ -11,6 +11,9 @@ class BLADE_API ABladePlayerControllerBase : public APlayerController
 {
 	GENERATED_BODY()
 
+public:
+	void UpdateHealth(float CurrentHealth, float MaxHealth);
+
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget")
 	TSubclassOf<UBladeWidgetBase> WidgetClass;

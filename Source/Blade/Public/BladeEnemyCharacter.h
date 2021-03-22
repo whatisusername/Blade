@@ -15,7 +15,6 @@ class BLADE_API ABladeEnemyCharacter : public ABladeCharacterBase
 public:
 	explicit ABladeEnemyCharacter(const FObjectInitializer& ObjectInitializer);
 	virtual void PostInitializeComponents() override;
-	virtual void HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags) override;
 
 protected:
 	UPROPERTY()
@@ -24,5 +23,5 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget")
 	TSubclassOf<UBladeHealthBarWidget> WidgetClass;
 
-	virtual void UpdateHealthProgress();
+	virtual void UpdateHealthProgress() override;
 };
