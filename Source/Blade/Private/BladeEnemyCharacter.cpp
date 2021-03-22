@@ -1,6 +1,6 @@
 #include "BladeEnemyCharacter.h"
 #include "BladeAIController.h"
-#include "BladeHealthBarWidgetBase.h"
+#include "BladeHealthBarWidget.h"
 #include "Components/WidgetComponent.h"
 
 ABladeEnemyCharacter::ABladeEnemyCharacter(const FObjectInitializer& ObjectInitializer)
@@ -30,11 +30,11 @@ void ABladeEnemyCharacter::HandleHealthChanged(float DeltaValue, const FGameplay
 
 void ABladeEnemyCharacter::UpdateHealthProgress()
 {
-	UBladeHealthBarWidgetBase* Widget = Cast<UBladeHealthBarWidgetBase>(WidgetComponent->GetUserWidgetObject());
+	UBladeHealthBarWidget* Widget = Cast<UBladeHealthBarWidget>(WidgetComponent->GetUserWidgetObject());
 
 	if (Widget)
 	{
 		float HealthPercentage = GetHealth() / GetMaxHealth();
-		Widget->UpdateHealthPercentage(HealthPercentage);
+		Widget->UpdateHealth(GetHealth(), GetMaxHealth());
 	}
 }

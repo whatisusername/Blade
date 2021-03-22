@@ -4,7 +4,7 @@
 #include "BladeCharacterBase.h"
 #include "BladeEnemyCharacter.generated.h"
 
-class UBladeHealthBarWidgetBase;
+class UBladeHealthBarWidget;
 class UWidgetComponent;
 
 UCLASS()
@@ -22,7 +22,7 @@ protected:
 	UWidgetComponent* WidgetComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget")
-	TSubclassOf<UBladeHealthBarWidgetBase> WidgetClass;
+	TSubclassOf<UBladeHealthBarWidget> WidgetClass;
 
 	virtual void UpdateHealthProgress();
 };
