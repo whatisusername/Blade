@@ -2,6 +2,7 @@
 #include "BladeCharacterBase.h"
 #include "BladeWidgetBase.h"
 #include "Blueprint/UserWidget.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 void ABladePlayerControllerBase::UpdateHealth(float CurrentHealth, float MaxHealth)
 {
@@ -19,6 +20,8 @@ void ABladePlayerControllerBase::OnPossess(APawn* aPawn)
 		OwningWidget->AddToViewport();
 		UpdateHealth(PlayerCharacter->GetHealth(), PlayerCharacter->GetMaxHealth());
 	}
+
+	UWidgetBlueprintLibrary::SetInputMode_GameOnly(this);
 }
 
 void ABladePlayerControllerBase::OnUnPossess()
