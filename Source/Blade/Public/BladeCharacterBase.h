@@ -26,6 +26,9 @@ public:
 
 	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, ABladeCharacterBase* InstigatorCharacter, AActor* DamageCauser);
 	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
+	virtual void Die();
+	bool CanUseAbility() const;
+	bool IsUsingMelee() const;
 
 	UFUNCTION(BlueprintCallable)
 	virtual bool Attack(const FGameplayTag& GameplayTag);
@@ -33,10 +36,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	bool ActivateAbilitiesWithTags(FGameplayTagContainer AbilityTags, bool bAllowRemoteActivation = true);
 
-	int32 GetCharacterLevel() const;
+	UFUNCTION(BlueprintPure, Category = "Characters")
 	bool IsAlive() const;
-	bool CanUseAbility() const;
-	bool IsUsingMelee() const;
 
 	UFUNCTION(BlueprintCallable)
 	virtual float GetHealth() const;
@@ -53,6 +54,7 @@ protected:
 	virtual void GrantAbilities();
 	virtual void BindAbilityInput();
 	virtual void UpdateHealthProgress();
+	int32 GetCharacterLevel() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void GetActiveAbilitiesWithTags(FGameplayTagContainer AbilityTags, TArray<UBladeGameplayAbility*>& ActiveAbilities) const;

@@ -22,6 +22,12 @@ void ABladeEnemyCharacter::PostInitializeComponents()
 	WidgetComponent->SetRelativeLocation(FVector(0, 0, 180));
 }
 
+void ABladeEnemyCharacter::Die()
+{
+	Super::Die();
+	Destroy();
+}
+
 void ABladeEnemyCharacter::UpdateHealthProgress()
 {
 	UBladeHealthBarWidget* Widget = Cast<UBladeHealthBarWidget>(WidgetComponent->GetUserWidgetObject());
