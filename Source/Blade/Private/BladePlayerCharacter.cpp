@@ -1,6 +1,12 @@
 #include "BladePlayerCharacter.h"
 #include "BladeGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+
+ABladePlayerCharacter::ABladePlayerCharacter()
+{
+	StimuliSourceComponent = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("StimuliSourceComponent"));
+}
 
 void ABladePlayerCharacter::HandleHealthChanged(float DeltaValue, const FGameplayTagContainer& EventTags)
 {

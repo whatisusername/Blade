@@ -9,13 +9,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-ABladeCharacterBase::ABladeCharacterBase(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+ABladeCharacterBase::ABladeCharacterBase()
 {
-	AbilitySystemComponent = ObjectInitializer.CreateDefaultSubobject<UBladeAbilitySystemComponent>(this, TEXT("AbilitySystemComponent"));
+	AbilitySystemComponent = CreateDefaultSubobject<UBladeAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
 
-	AttributeSet = ObjectInitializer.CreateDefaultSubobject<UBladeAttributeSet>(this, TEXT("AttributeSet"));
+	AttributeSet = CreateDefaultSubobject<UBladeAttributeSet>(TEXT("AttributeSet"));
 }
 
 void ABladeCharacterBase::PossessedBy(AController* NewController)
