@@ -13,7 +13,8 @@ class BLADE_API ABladeEnemyCharacter : public ABladeCharacterBase
 	GENERATED_BODY()
 
 public:
-	explicit ABladeEnemyCharacter(const FObjectInitializer& ObjectInitializer);
+	ABladeEnemyCharacter();
+
 	virtual void PostInitializeComponents() override;
 	virtual void Die() override;
 
