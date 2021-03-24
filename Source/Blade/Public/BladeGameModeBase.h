@@ -4,6 +4,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "BladeGameModeBase.generated.h"
 
+class UBladeGameFinishWidget;
+
 UCLASS()
 class BLADE_API ABladeGameModeBase : public AGameModeBase
 {
@@ -18,4 +20,9 @@ public:
 protected:
 	UPROPERTY()
 	FTimerHandle TimerHandle;
+
+	UPROPERTY()
+	TSubclassOf<UBladeGameFinishWidget> GameFinishWidgetClass;
+
+	virtual void BeginPlay() override;
 };
