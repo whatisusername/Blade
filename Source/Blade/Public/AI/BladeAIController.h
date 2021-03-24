@@ -20,7 +20,7 @@ public:
 	virtual void ResumeLogic(const FString& Reason);
 
 protected:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AI")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
 	UAIPerceptionComponent* AIPerceptionComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "AI")
